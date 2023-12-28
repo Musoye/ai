@@ -1,2 +1,2 @@
-# ai
-Learning of A.I
+# A.I.
+Learning about A.I
