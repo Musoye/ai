@@ -13,7 +13,7 @@ def get_predict():
     return render_template('getimage.html')
 
 
-@app.route('/predict', methods=['POST'])
+@app.route('/estimate', methods=['POST'])
 def predict():
     file = request.files['image']
     filename = file.filename
