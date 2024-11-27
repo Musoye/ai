@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image - Predict number</title>
   </head>
+  <style>
+    div {
+      margin: 0 auto;
+      width: 60%;
+      padding: 10px;
+  }
+  </style>
   <body>
-    <h1>Image - Predict number</h1>
+    <div>
+    <h1>Image - Predict Picture(Whether Image is Dog or Cat)</h1>
     <form action="/estimate" method="post" enctype="multipart/form-data">
       <input type="file" name="image" />
       <button type="submit">Predict</button>
     </form>
-
+  </div>
   </body>
 </html>
