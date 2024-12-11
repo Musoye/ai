@@ -49,7 +49,7 @@ class ModelTraining:
             step_fn = self.val_step_fn
         else:
             data_loader = self.train_loader
-            step+fn = self.train-step_fn
+            step_fn = self.train_step_fn
         
         if data_loader is None:
             return None
