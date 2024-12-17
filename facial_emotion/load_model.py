@@ -4,16 +4,29 @@ from torchvision import transforms
 from PIL import Image
 
 def predict_image(filename):
-    model = nn.Sequential(
-    nn.Flatten(),
-    nn.Linear(1*48*48, 128),
-    nn.ReLU(),
-    nn.Linear(128, 7)
-)
+    model = nn.Sequential()
+
+    #featurizer
+    n_ch = 1
+    model.add_module('c1', nn.Conv2d(
+        in_channels=1, out_channels=n_ch, kernel_size=3
+    ))
+    model.add_module('relu1', nn.ReLU())
+    model.add_module('maxp1', nn.MaxPool2d(kernel_size=2))
+    model.add_module('flatten', nn.Flatten())
+
+    #classfication
+    model.add_module('fc1', nn.Linear(n_ch*13*13, 70))
+    model.add_module('relu2', nn.ReLU())
+    model.add_module('fc3', nn.Linear(70, 35))
+    model.add_module('relu3', nn.ReLU())
+    model.add_module('fc4', nn.Linear(35, 12))
+    model.add_module('relu4', nn.ReLU())
+    model.add_module('fc2', nn.Linear(12, 7))
 
     transform = transforms.Compose([
-    transforms.Grayscale(num_output_channels=1),
-    transforms.Resize((48, 48)),
+    transforms.Grayscale(),
+    transforms.Resize((28, 28)),
     transforms.ToTensor(),
     transforms.Normalize([0.5], [0.5])
 ])
@@ -27,18 +40,8 @@ def predict_image(filename):
 
     output = model(image_tensor)
 
+    predict =  int((torch.argmax(output, dim=1)).float())
+
     arr = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
-    emo = []
-    emo = output.tolist()[0]
-
-    print(emo)
-
-    max_id =  0
-
-    for i in range(6):
-        if emo[i] > emo[i + 1]:
-            max_id = i
-        else:
-            max_id = i + 1
     
-    return arr[max_id]
+    return arr[predict]
