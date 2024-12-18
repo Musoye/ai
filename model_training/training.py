@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+from matplotlib.pyplot import plt
 
 class ModelTraining:
 
@@ -107,6 +108,12 @@ class ModelTraining:
         self.model.train()
 
         return y_hat.numpy()
+    
+    def plot(self):
+        plt.figure()
+        plt.plot(self.losses, color='green')
+        plt.plot(self.val_losses, color='red')
+        plt.show()
     
     def count_parameters(self):
         return sum(p.numel() for p in self.modle.parametrs() if p.requires_grad)
