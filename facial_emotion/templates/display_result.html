@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image - Predict number</title>
-    <style>
-        div {
-            margin: 0 auto;
-            width: 60%;
-            padding: 10px;
-        }
-    </style>
-  </head>
-  <body>
-    <div>
-
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image - Predict Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    div.container {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #333333;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #555555;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
     <h1>Result - Predicted Emotion</h1>
     <h2>Result: {{ prediction }}</h2>
-    <img src="{{ probability }}" /> 
-</div>
-
-  </body>
+    <img src="{{ probability }}" alt="Prediction Visualization" />
+  </div>
+</body>
 </html>
